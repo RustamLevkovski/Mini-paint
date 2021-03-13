@@ -9,7 +9,12 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([])
+    RouterModule.forChild([
+      {
+        path: '',
+        component: RegistrationComponent
+      }
+    ])
   ],
   providers: []
 })

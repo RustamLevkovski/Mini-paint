@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { WhiteBoardModule } from './modules/white-board/white-board.module';
 import { RegistrationModule } from './modules/registration/registration.module';
 import { LoginModule } from './modules/login/login.module';
@@ -16,7 +17,8 @@ import { AppComponent } from './app.component';
     GalleryModule,
     LoginModule,
     RegistrationModule,
-    WhiteBoardModule
+    WhiteBoardModule,
+    AppRoutingModule
 
   ],
   providers: [],
