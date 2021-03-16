@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="block">
+  <form class="block" [formGroup]="regForm" (ngSubmit)="submit()">
       <h1 class="block__title">Mini Paint</h1>
 
       <h2 class="block__title"> Registration</h2>
@@ -9,7 +9,7 @@
 
         <label class="form-controls__label" for="email"> Email </label>
 
-        <input class="form-controls__input" type="text">
+        <input class="form-controls__input" type="text" formControlName="email">
 
       </div>
 
@@ -17,14 +17,14 @@
 
         <label class="form-controls__label" for="email"> Password </label>
 
-        <input class="form-controls__input" type="text">
+        <input class="form-controls__input" type="text" formControlName="password">
 
       </div>
 
-      <button class="btn"> Sign Up </button>
+      <button type="submit" class="btn" [disabled]="regForm.invalid"> Sign Up </button>
 
       <button class="btn" routerLink='/login'> Back </button>
-  </div>
+  </form>
 
 </div>
 

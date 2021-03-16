@@ -8,11 +8,11 @@ body {
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+
+
 .container {
   display: flex;
   justify-content: center;
-
-
 
   .block {
     display: flex;
@@ -44,16 +44,20 @@ body {
       font-size: 18px;
       padding: 5px;
       border: 1px solid #ccc;
+
+      &.ng-invalid.ng-touched {
+        border: 2px solid red;
+      }
+
+      &.ng-valid.ng-touched {
+        border: 2px solid blue;
+      }
+
      }
 
     }
-
-
-
   }
 }
-
-
   .btn {
   display: inline-block;
   padding: 16px 20px;
@@ -64,8 +68,16 @@ body {
   background: #1a508b;
   color: #fff3e6;
   transition: opacity 0.2s ease-in;
+
+  &:disabled {
+    background: rgb(153, 148, 148);
+    color: #000;
+    cursor: not-allowed;
+  }
   }
 
   .btn:hover {
     opacity: 0.8;
   }
+
+
