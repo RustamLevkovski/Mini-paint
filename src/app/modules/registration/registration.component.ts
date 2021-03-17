@@ -1,7 +1,11 @@
+// import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthentificationService } from './../services/authentification.service';
+import { User } from './../../interfaces/user.interface';
 import { FormControl, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +17,12 @@ export class RegistrationComponent implements OnInit {
 
   public regForm: FormGroup;
 
-  constructor (private fb: FormBuilder) {
+  constructor (
+    private fb: FormBuilder,
+    private reg: AuthentificationService,
+    private router: Router,
+    // private fAuth: AngularFireAuth
+    ) {
     this._createForm ()
   }
 
@@ -24,13 +33,20 @@ export class RegistrationComponent implements OnInit {
   public submit(): void {
 
     if(this.regForm.valid) {
-      console.log('Form Group', this.regForm);
-      const formData = this.regForm.value;
-      console.log('Form Data', formData);
+      if (this.regForm.invalid) {
+        // console.log('Form Group', this.regForm);
+        // const formData = this.regForm.value;
+        // console.log('Form Data', formData);
+        return
+      }
+      const user: User = {
+        email: this.regForm.value.email,
+        password: this.regForm.value.password,
+        returnSecureToken: true
+      }
+      this.reg.signUp(user);
+      this.router.navigate(['/login']);
     }
-
-
-
   }
 
   private _createForm(): void {
