@@ -24,9 +24,7 @@ body {
     margin: 10px 0;
     background-color: #fff3e6;
 
-    &__title {
-      color: #0D335D;
-    }
+
 
     .form-controls {
      display: flex;
@@ -84,3 +82,6 @@ body {
   }
 
 
+  .title {
+    color: #0D335D;
+  }
