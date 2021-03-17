@@ -14,22 +14,12 @@ export class PanelComponent {
 
   public palleteForm: FormGroup;
 
-  public currentSize: string
 
 
   constructor (
     private fb: FormBuilder
   ) {
     this._createForm()
-  }
-
-
-
-  public getSize(change): void {
-    this.currentSize = change.target.value
-    console.log(this.currentSize);
-
-
   }
 
 
