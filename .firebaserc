@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "minipaint-92734": {
+      "hosting": {
+        "miniPaint": [
+          "minipaint-92734"
+        ]
+      }
+    }
+  }
+}

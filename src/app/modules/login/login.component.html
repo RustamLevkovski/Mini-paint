@@ -11,8 +11,9 @@
 
         <input class="form-controls__input" type="text" formControlName="email">
 
-        <div class="validation" >
-          <small></small>
+        <div *ngIf="authForm.get('email').invalid && authForm.get('email').touched" class="validation" >
+          <small *ngIf="authForm.get('email').errors.required"> This field is required</small>
+          <small *ngIf="authForm.get('email').errors.email"> You have entered an invalid e-mail address. Please try again. </small>
         </div>
 
       </div>
@@ -22,6 +23,13 @@
         <label class="form-controls__label" for="email"> Password </label>
 
         <input class="form-controls__input" type="text" formControlName="password">
+
+        <div class="validation" *ngIf="authForm.get('password').invalid && authForm.get('password').touched">
+          <small *ngIf="authForm.get('password').errors.required"> This field is required</small>
+          <small *ngIf="authForm.get('password').errors.minlength"> Password must contain at least
+            {{authForm.get('password').errors.minlength.requiredLength}}
+            characters. Please try again. You have entered {{authForm.get('password').errors.minlength.actualLength}} characters </small>
+        </div>
 
       </div>
 

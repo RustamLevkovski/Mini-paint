@@ -1,5 +1,10 @@
+import { User } from './../../interfaces/user.interface';
+import { AuthentificationService } from './services/authentification.service';
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 
 @Component ({
   selector: 'app-login',
@@ -11,7 +16,14 @@ export class LoginComponent implements OnInit {
 
   public authForm: FormGroup;
 
-  constructor (private fb: FormBuilder) {
+
+
+  constructor (
+    private fb: FormBuilder,
+    private auth: AuthentificationService,
+    private router: Router,
+    private fAuth: AngularFireAuth
+    ) {
     this._createForm()
   }
 
@@ -20,13 +32,25 @@ export class LoginComponent implements OnInit {
   }
 
   public submit(): void {
-
-    if (this.authForm.valid) {
-      console.log('Form submitted', this.authForm);
-      const formData = {... this.authForm.value}
-      console.log('FormData', formData);
-      console.log('Status ', this.authForm.status);
+    if (this.authForm.invalid) {
+      // console.log('Form submitted', this.authForm);
+      // const formData = {... this.authForm.value}
+      // console.log('FormData', formData);
+      // console.log('Status ', this.authForm.status);
+      return
     }
+      const user: User = {
+      email: this.authForm.value.email,
+      password: this.authForm.value.password,
+      returnSecureToken: true
+      }
+      this.auth.login(user).then((result)=> {
+        console.log(result);
+
+        // this.auth.setToken(result.user.b.b.h)
+        this.authForm.reset()
+        this.router.navigate(['/white-board']);
+      });
   }
 
   private _createForm(): void {

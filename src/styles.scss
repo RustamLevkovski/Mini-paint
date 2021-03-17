@@ -52,7 +52,10 @@ body {
       &.ng-valid.ng-touched {
         border: 2px solid blue;
       }
-
+     }
+     .validation {
+       color: red;
+       font-weight: bold;
      }
 
     }
