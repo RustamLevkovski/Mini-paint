@@ -1,3 +1,4 @@
+import { AuthentificationGuard } from './../services/authentification.guard';
 import { FB_CONFIG } from './../../fb.config';
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -24,7 +25,8 @@ import { AngularFireModule } from "@angular/fire";
     ]),
   ],
   providers: [
-    AuthentificationService
+    AuthentificationService,
+    AuthentificationGuard
   ]
 })
 
