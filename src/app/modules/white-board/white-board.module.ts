@@ -1,3 +1,4 @@
+import { TemplatesComponent } from './components/templates/templates.component';
 import { BrushSizeComponent } from './components/brush-size/brush-size.component';
 // import { LoginComponent } from './../login/login.component';
 import { PanelComponent } from './components/panel/panel.component';
@@ -16,7 +17,8 @@ import { ColorPickerComponent } from './components/color-picker/color-picker.com
     DrawAreaComponent,
     PanelComponent,
     ColorPickerComponent,
-    BrushSizeComponent
+    BrushSizeComponent,
+    TemplatesComponent
      // ColorPickerModule
 
 

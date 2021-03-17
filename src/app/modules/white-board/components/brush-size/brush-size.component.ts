@@ -12,7 +12,7 @@ export class BrushSizeComponent {
 
   public getSize(change): void {
     this.currentSize = change.target.value
-    console.log(this.currentSize);
+    // console.log(this.currentSize);
   }
 
 }

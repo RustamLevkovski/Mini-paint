@@ -22,20 +22,19 @@
 
       &__brush:hover {
         color: #1a508b;
-
       }
 
-
-
-      &__palette {
-        color: #1a518bc9;
-        cursor: pointer;
-      }
 
       &__templates {
         color: #1a518bc9;
         cursor: pointer;
       }
+
+      &__templates:hover {
+        color: #1a508b;
+      }
+
+
     }
 
 
