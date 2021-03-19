@@ -1,41 +1,26 @@
 <div class="container">
-
   <form class="block" [formGroup]="regForm" (ngSubmit)="submit()">
       <h1 class="title">Mini Paint</h1>
-
       <h2 class="title"> Registration</h2>
-
       <div class="form-controls">
-
         <label class="form-controls__label" for="email"> Email </label>
-
         <input class="form-controls__input" type="text" formControlName="email">
-
         <div class="validation" *ngIf="regForm.get('email').touched && regForm.get('email').invalid">
           <small *ngIf="regForm.get('email').errors.required"> This field is required </small>
           <small *ngIf="regForm.get('email').errors.email"> You have entered invalid email address. Please try again </small>
         </div>
-
       </div>
-
       <div class="form-controls">
-
         <label class="form-controls__label" for="email"> Password </label>
-
         <input class="form-controls__input" type="text" formControlName="password">
-
         <div class="validation" *ngIf="regForm.get('password').invalid && regForm.get('password').touched">
           <small *ngIf="regForm.get('password').errors.required"> This field is required </small>
           <small> Password must contain at least {{regForm.get('password').errors.minlength.requiredLength}} characters. You have enterd
             {{regForm.get('password').errors.minlength.actualLength}} </small>
         </div>
-
       </div>
-
       <button type="submit" class="btn" [disabled]="regForm.invalid"> Sign Up </button>
-
       <button class="btn" routerLink='/login'> Back </button>
   </form>
-
 </div>
 

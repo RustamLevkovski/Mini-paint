@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { Component } from "@angular/core";
-import { ColorPickerComponent } from '../color-picker/color-picker.component';
+import { Component, EventEmitter, Output } from "@angular/core";
+
 
 
 
@@ -12,20 +12,16 @@ import { ColorPickerComponent } from '../color-picker/color-picker.component';
 
 export class PanelComponent {
 
-  public palleteForm: FormGroup;
+  @Output() public getBrushSizePanel = new EventEmitter();
+  @Output() public getColorValuePanel = new EventEmitter();
 
-
-
-  constructor (
-    private fb: FormBuilder
-  ) {
-    this._createForm()
+public getBrushSize(brushSize: number): void {
+  console.log(brushSize);
+  this.getBrushSizePanel.next(brushSize);
   }
 
-
-private _createForm(): void {
-  this.palleteForm = this.fb.group({
-    color: new FormControl('')
-  })
-}
+  public getColorValue(colorValue: string) {
+    console.log(colorValue);
+    this.getColorValuePanel.next(colorValue);
+  }
 }

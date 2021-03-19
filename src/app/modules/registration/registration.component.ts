@@ -1,10 +1,16 @@
 // import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthentificationService } from './../services/authentification.service';
 import { User } from './../../interfaces/user.interface';
-import { FormControl, Validators } from '@angular/forms';
+import {
+  FormControl,
+  Validators
+} from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit
+} from "@angular/core";
 import { Router } from '@angular/router';
 
 @Component({

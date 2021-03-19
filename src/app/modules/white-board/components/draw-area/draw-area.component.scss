@@ -1,4 +1,4 @@
-.draw-area {
+.whiteBoard {
   display: flex;
   width: 100vh;
   height: 70vh;
@@ -6,8 +6,8 @@
   margin-bottom: 10px;
   background-color: white;
 
-  .list {
-    display: flex;
-    height: 300px;
+  .whiteBoard__canvas {
+    //display: flex;
+    //height: 300px;
   }
 }

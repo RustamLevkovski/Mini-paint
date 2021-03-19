@@ -1,32 +1,24 @@
 <div class="container">
-
   <div class="block">
-
     <div class="panel">
-
-      <app-panel></app-panel>
-
-
+      <app-panel
+        (getBrushSizePanel)="getBrushSize($event)"
+        (getColorValuePanel)="getColorValue($event)"
+        >
+      </app-panel>
     </div>
-
     <div class="board">
-
       <h2 class="title"> White-board</h2>
-
-      <app-draw-area></app-draw-area>
-
+      <app-draw-area
+        brushSize={{brushSizeBoard}}
+        colorValue={{colorValueBoard}}
+        >
+      </app-draw-area>
       <div class="controls">
-
         <button class="btn controls__btn" routerLink='/gallery'> Gallery </button>
-
         <button class="btn controls__btn" routerLink='/login'> LogOut </button>
-
         <button class="btn controls__btn" > Publish! </button>
-
       </div>
-
     </div>
-
   </div>
-
 </div>

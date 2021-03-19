@@ -1,3 +1,4 @@
+import { WhiteBoardService } from './../services/white-board.services';
 import { TemplatesComponent } from './components/templates/templates.component';
 import { BrushSizeComponent } from './components/brush-size/brush-size.component';
 // import { LoginComponent } from './../login/login.component';
@@ -34,7 +35,9 @@ import { ColorPickerComponent } from './components/color-picker/color-picker.com
       }
     ])
   ],
-  providers: []
+  providers: [
+    WhiteBoardService
+  ]
 })
 
 export class WhiteBoardModule {}
