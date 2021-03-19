@@ -1,0 +1,19 @@
+.page {
+  display: flex;
+  width: 100vh;
+  height: 70vh;
+  border: 1px solid #1a508b;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.controlPanel {
+  display: flex;
+  margin-top: 10px;
+}
+
+.btn {
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}

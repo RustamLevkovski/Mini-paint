@@ -30,18 +30,19 @@ export class LoginComponent implements OnInit {
   }
 
   public submit(): void {
-    if (this.authForm.invalid) {
-    } else {
+    if (!this.authForm.invalid) {
       const user: User = {
         email: this.authForm.value.email,
         password: this.authForm.value.password,
         returnSecureToken: true
         }
-        this.auth.login(user).then((result)=> {
+        this.auth.login(user).then((result) => {
           // console.log(result);
-          // this.auth.setToken(result.user.b.b.h)
-          this.authForm.reset()
-          this.router.navigate(['/white-board']);
+          this.auth.setToken(result.user.b.b.h)
+          this.authForm.reset();
+
+            this.router.navigate(['/white-board']);
+
         });
     }
 

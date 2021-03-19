@@ -1,4 +1,7 @@
+import { Router } from '@angular/router';
+import { AuthentificationService } from './../services/authentification.service';
 import { Component, Input, OnInit } from "@angular/core";
+import { BoardShape } from 'src/app/interfaces/coordinate.interface';
 
 @Component ({
   selector: 'app-white-board',
@@ -8,8 +11,10 @@ import { Component, Input, OnInit } from "@angular/core";
 
 export class WhiteBoardComponent implements OnInit {
 
-  public brushSizeBoard: number;
-  public colorValueBoard: string;
+  public brushSizeBoard: number = 3;
+  public colorValueBoard: string = "#000000";
+
+  constructor(private authentificationService: AuthentificationService, private router: Router) {}
 
   public ngOnInit(): void {
   }
@@ -24,5 +29,14 @@ export class WhiteBoardComponent implements OnInit {
     this.colorValueBoard = colorValue;
     console.log(this.colorValueBoard);
     return this.colorValueBoard;
+  }
+
+  public logOut(): void {
+    this.authentificationService.logout();
+    this.router.navigate['login'];
+  }
+
+  public publish(): void {
+
   }
 }

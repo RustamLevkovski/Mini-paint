@@ -18,11 +18,11 @@ export class AuthentificationService {
   public logout(): void {
     this.afAuth.signOut().then(()=> {
       this.setToken(null);
-    })
+    });
   };
 
   public isAuthenticated(): boolean {
-    return !!this.token
+    return !!this.token;
   }
 
   public signUp (user: User): void {
@@ -33,7 +33,7 @@ export class AuthentificationService {
     })
   }
 
-  private setToken (token: string): void {
+  public setToken(token: string): void {
     if (token) {
       localStorage.setItem('fb-token', token);
     } else {

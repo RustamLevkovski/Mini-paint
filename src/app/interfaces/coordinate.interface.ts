@@ -21,3 +21,8 @@ export enum BoardShapeType {
   CURVE = 'curve',
   POINT = 'point',
 }
+
+
+export interface FbCreateResponse {
+  name: string
+}

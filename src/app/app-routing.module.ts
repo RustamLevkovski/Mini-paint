@@ -1,3 +1,5 @@
+import { AuthentificationGuard } from './modules/services/authentification.guard';
+import { GalleryModule } from './modules/gallery/gallery.module';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -19,7 +21,13 @@ import { RouterModule, Routes } from "@angular/router";
       },
       {
         path: 'white-board',
-        loadChildren: () => import('./modules/white-board/white-board.module').then(m=>m.WhiteBoardModule)
+        loadChildren: () => import('./modules/white-board/white-board.module').then(m=>m.WhiteBoardModule),
+        canActivate: [AuthentificationGuard]
+      },
+      {
+        path: 'gallery',
+        loadChildren: () => import('./modules/gallery/gallery.module').then(m=>m.GalleryModule),
+        canActivate: [AuthentificationGuard]
       }
     ])
   ],

@@ -10,15 +10,18 @@
     <div class="board">
       <h2 class="title"> White-board</h2>
       <app-draw-area
-        brushSize={{brushSizeBoard}}
-        colorValue={{colorValueBoard}}
+        [brushSize]="brushSizeBoard"
+        [colorValue]="colorValueBoard"
+
         >
       </app-draw-area>
       <div class="controls">
         <button class="btn controls__btn" routerLink='/gallery'> Gallery </button>
-        <button class="btn controls__btn" routerLink='/login'> LogOut </button>
-        <button class="btn controls__btn" > Publish! </button>
+        <button class="btn controls__btn" (click)="logOut()" routerLink='/login'> LogOut </button>
+        <button class="btn controls__btn" (click)="publish()"> Publish! </button>
       </div>
+
     </div>
   </div>
 </div>
+<!-- (publishedShape)="" -->

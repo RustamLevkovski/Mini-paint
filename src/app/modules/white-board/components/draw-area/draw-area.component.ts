@@ -1,10 +1,9 @@
 import { Coordinates, Point, BoardShape, BoardShapeType } from './../../../../interfaces/coordinate.interface';
 import { Dimension } from './../../../../interfaces/dimension.interface';
 import { takeUntil, switchMap, map, pairwise, filter } from 'rxjs/operators';
-import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from "@angular/core";
 import { fromEvent, Observable, Subject } from "rxjs";
 import { WhiteBoardService } from "src/app/modules/services/white-board.services"; // Надо наполнить и заполнить WhiteBoardService
-
 
 @Component({
   selector: 'app-draw-area',
@@ -13,12 +12,15 @@ import { WhiteBoardService } from "src/app/modules/services/white-board.services
 })
 
 export class DrawAreaComponent implements OnInit, OnDestroy {
-@Input() public brushSize: number = 3;
-@Input() public colorValue: string = "#000000";
+@Input() public brushSize: number;
+@Input() public colorValue: string;
+
+@Output() public publishedShape = new EventEmitter();
 
 @ViewChild('mainCanvas', {static: true}) public mainCanvasRef: ElementRef;
 @ViewChild('whiteBoard', {static: true}) public boardRef: ElementRef;
 
+public shape: BoardShape;
 
 private mainCanvas: HTMLCanvasElement;
 private currentShapeData: Coordinates[] = []; // У меня этого нет. Импортируется из этого интерфейса
@@ -34,6 +36,10 @@ ngOnInit(): void {
   this.initMainCanvas();
   this.initStream();
   this.observeStream();
+  console.log(this.brushSize);
+  console.log(this.colorValue);
+
+
 }
 
 ngOnDestroy(): void {
@@ -100,9 +106,13 @@ private addShape(): void {
     data: this.currentShapeData
   };
   console.log(shape);
-
+  // this.whiteBoardService.sendData(shape).subscribe(() => {
+  //   this.clearMainCanvas();
+  // })
   // this.clearMainCanvas();
   this.currentShapeData = [];
+  this.shape = shape;
+  this.publishedShape.next(this.shape);
   // this.changeBoard.next(shape); // output - вопрос надо ли они мне у меня все реализуется в этом компоненте
 }
 

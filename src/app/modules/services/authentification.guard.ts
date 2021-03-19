@@ -11,15 +11,14 @@ export class AuthentificationGuard implements CanActivate {
     private router: Router
     ) {}
 
-  public canActivate (
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
+  public canActivate (): Observable<boolean> | Promise<boolean> | boolean {
+    console.log(this.auth.isAuthenticated());
+
     if (this.auth.isAuthenticated()) {
       return true
     } else {
-      this.auth.logout()
-      this.router.navigate(['/white-board, login'], {
+      // this.auth.logout()
+      this.router.navigate(['/login'], {
         queryParams: {
           loginAgain: true
         }
