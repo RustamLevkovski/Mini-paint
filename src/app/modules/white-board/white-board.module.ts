@@ -9,6 +9,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
+import { HttpClientModule } from '@angular/common/http';
 // import { AuthentificationGuard } from '../services/authentification.guard';
 // import { ColorPickerModule } from 'ngx-color-picker';
 
@@ -20,12 +21,13 @@ import { ColorPickerComponent } from './components/color-picker/color-picker.com
     ColorPickerComponent,
     BrushSizeComponent,
     TemplatesComponent
-     // ColorPickerModule
+
 
 
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule.forChild([
       {
         path: '', component: WhiteBoardComponent, children: [

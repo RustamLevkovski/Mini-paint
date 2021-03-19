@@ -15,6 +15,8 @@ export class PanelComponent {
   @Output() public getBrushSizePanel = new EventEmitter();
   @Output() public getColorValuePanel = new EventEmitter();
 
+  public isShow: boolean = true;
+
 public getBrushSize(brushSize: number): void {
   console.log(brushSize);
   this.getBrushSizePanel.next(brushSize);
@@ -24,4 +26,9 @@ public getBrushSize(brushSize: number): void {
     console.log(colorValue);
     this.getColorValuePanel.next(colorValue);
   }
+
+  public showTemplates(): void {
+      this.isShow = !this.isShow
+  }
+
 }
