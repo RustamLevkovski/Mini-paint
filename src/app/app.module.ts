@@ -16,14 +16,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    GalleryModule,
     LoginModule,
     RegistrationModule,
     WhiteBoardModule,
+    GalleryModule,
     AppRoutingModule,
-
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]

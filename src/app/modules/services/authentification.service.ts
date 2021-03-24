@@ -15,9 +15,12 @@ export class AuthentificationService {
     return this.afAuth.signInWithEmailAndPassword(user.email, user.password);
   };
 
+  // прикрепляется один и тот жа author ID даже после logOut
+
   public logout(): void {
     this.afAuth.signOut().then(()=> {
       this.setToken(null);
+      localStorage.clear();
     });
   };
 
@@ -30,6 +33,7 @@ export class AuthentificationService {
     .then((userCredential) => {
       this.afAuth.currentUser.then(result => result.sendEmailVerification());
       let user = userCredential.user;
+
     })
   }
 
@@ -40,4 +44,23 @@ export class AuthentificationService {
       localStorage.clear();
     }
   }
+
+
+public getUserId (): void {
+  this.afAuth.currentUser
+  .then(res => localStorage.setItem('userID',res.uid))
+  .catch(res => res === null)
+}
+
+  // public setUserID(userID: any): void {
+  //   this.afAuth.currentUser
+  //   .then(res => console.log(res));
+  //   ;
+  //   if (userID) {
+  //     localStorage.setItem('userID', userID)
+  //   } else {
+  //     localStorage.clear()
+  //   }
+  // }
+
  }

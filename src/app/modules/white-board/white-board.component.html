@@ -4,6 +4,7 @@
       <app-panel
         (getBrushSizePanel)="getBrushSize($event)"
         (getColorValuePanel)="getColorValue($event)"
+
         >
       </app-panel>
     </div>
@@ -12,16 +13,18 @@
       <app-draw-area
         [brushSize]="brushSizeBoard"
         [colorValue]="colorValueBoard"
-
+        [shapes]="shapes"
         >
       </app-draw-area>
       <div class="controls">
         <button class="btn controls__btn" routerLink='/gallery'> Gallery </button>
         <button class="btn controls__btn" (click)="logOut()" routerLink='/login'> LogOut </button>
         <button class="btn controls__btn" (click)="publish()"> Publish! </button>
+        <button class="btn controls__btn" (click)="clear()"> Clear </button>
       </div>
 
     </div>
   </div>
 </div>
-<!-- (publishedShape)="" -->
+
+

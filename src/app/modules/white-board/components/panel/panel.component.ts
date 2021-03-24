@@ -28,7 +28,7 @@ public getBrushSize(brushSize: number): void {
   }
 
   public showTemplates(): void {
-      this.isShow = !this.isShow
+      this.isShow = !this.isShow;
   }
 
 }

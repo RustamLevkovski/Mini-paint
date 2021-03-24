@@ -1,7 +1,13 @@
-import { Coordinates, Point, BoardShape, BoardShapeType } from './../../../../interfaces/coordinate.interface';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Coordinates, Point, BoardShape, BoardShapeType} from './../../../../interfaces/coordinate.interface';
 import { Dimension } from './../../../../interfaces/dimension.interface';
 import { takeUntil, switchMap, map, pairwise, filter } from 'rxjs/operators';
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  Input, ViewChild,
+  OnDestroy, OnInit,
+  Renderer2 } from "@angular/core";
 import { fromEvent, Observable, Subject } from "rxjs";
 import { WhiteBoardService } from "src/app/modules/services/white-board.services"; // Надо наполнить и заполнить WhiteBoardService
 
@@ -14,8 +20,10 @@ import { WhiteBoardService } from "src/app/modules/services/white-board.services
 export class DrawAreaComponent implements OnInit, OnDestroy {
 @Input() public brushSize: number;
 @Input() public colorValue: string;
+@Input() public shapes: BoardShape[];
 
-@Output() public publishedShape = new EventEmitter();
+// @Output() public clearCanvas = new EventEmitter();
+
 
 @ViewChild('mainCanvas', {static: true}) public mainCanvasRef: ElementRef;
 @ViewChild('whiteBoard', {static: true}) public boardRef: ElementRef;
@@ -27,25 +35,24 @@ private currentShapeData: Coordinates[] = []; // У меня этого нет. 
 private mouseCoords$: Observable<Point[]> // у меня нет типа Point
 private mouseUp$:  Observable<Event>;
 private mouseOut$: Observable<Event>;
-private destroy$ = new Subject;
+private destroy$ = new Subject();
 
-constructor(private renderer: Renderer2, private whiteBoardService: WhiteBoardService) {}
 
-ngOnInit(): void {
+constructor(private renderer: Renderer2, private whiteBoardService: WhiteBoardService, private fireAuth: AngularFireAuth) {}
+
+public ngOnInit(): void {
+
+  this.whiteBoardService.clearCanvasEvent.pipe(takeUntil(this.destroy$)).subscribe(() => this.clearMainCanvas());
+  this.whiteBoardService.publishEvent.pipe(takeUntil(this.destroy$)).subscribe(() => {
+    this.whiteBoardService.base64Complete.next(this.getBase64());
+  });
+
   this.mainCanvas = this.mainCanvasRef.nativeElement as HTMLCanvasElement;
   this.initMainCanvas();
   this.initStream();
   this.observeStream();
-  console.log(this.brushSize);
-  console.log(this.colorValue);
-
-
 }
 
-ngOnDestroy(): void {
-  this.destroy$.next();
-  this.destroy$.complete();
-}
 
 private initMainCanvas(): void {
   const board = this.boardRef.nativeElement as HTMLDivElement;
@@ -54,6 +61,7 @@ private initMainCanvas(): void {
   const rect: Dimension = { width, height };
   this.setCanvasSize(rect, this.mainCanvas);
   mainContext.scale(1, 1);
+  // this.clearCanvas.next(this.mainCanvas);
   }
 
 private initStream(): void {
@@ -80,8 +88,8 @@ private initStream(): void {
 private observeStream(): void {
   this.mouseCoords$.pipe(takeUntil(this.destroy$)).subscribe(([from, to]) => {
     const coords: Coordinates = {from, to};
-    const color = this.colorValue; //моя доработка - значению импортирую из color-picker component
-    const thickness = this.brushSize; //моя доработка - значению импортирую из brush-size component
+    const color = this.colorValue;
+    const thickness = this.brushSize;
     this.drawPoint(this.mainCanvas, color, thickness, from, to);
     this.currentShapeData = [... this.currentShapeData, coords];
   });
@@ -98,23 +106,16 @@ private observeStream(): void {
 }
 
 private addShape(): void {
-  const shape: BoardShape = {  //импортируется. у меня нет.
-    color: this.colorValue, // моя доработка
-    thickness: this.brushSize, //моя доработка
+    const shape: BoardShape = {
+    color: this.colorValue,
+    thickness: this.brushSize,
     actual: true,
-    type: BoardShapeType.CURVE, // ваще в душе не ебу. Импортится из видеоконференции
+    type: BoardShapeType.CURVE,
     data: this.currentShapeData
-  };
-  console.log(shape);
-  // this.whiteBoardService.sendData(shape).subscribe(() => {
-  //   this.clearMainCanvas();
-  // })
-  // this.clearMainCanvas();
-  this.currentShapeData = [];
-  this.shape = shape;
-  this.publishedShape.next(this.shape);
-  // this.changeBoard.next(shape); // output - вопрос надо ли они мне у меня все реализуется в этом компоненте
-}
+  };  console.log(shape);
+    this.currentShapeData = [];
+    this.shape = shape;
+  }
 
 private drawPoint(
   canvas: HTMLCanvasElement,
@@ -143,6 +144,17 @@ private clearMainCanvas(): void {
   mainContex.clearRect(0, 0, this.mainCanvas.width, this.mainCanvas.height);
 }
 
+private getBase64() : string {
+  const base64 = this.mainCanvas.toDataURL();
+  console.log(base64);
+
+  return base64;
+}
+
+public ngOnDestroy(): void {
+  this.destroy$.next();
+  this.destroy$.complete();
+}
 
 
 }

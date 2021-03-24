@@ -1,3 +1,4 @@
+import { GalleryService } from './../services/gallery.service';
 import { GalleryComponent } from './gallery.component';
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,6 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-
     RouterModule.forChild([
       {
         path: '',
@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
     ])
   ],
   providers: [
-
+    GalleryService
   ],
 
 })

@@ -13,7 +13,6 @@ export interface BoardShape {
   thickness: number;
   data: Coordinates[];
   actual: boolean;
-  // changeID?: ChangeIDDto;
   type: BoardShapeType;
 }
 
@@ -23,6 +22,4 @@ export enum BoardShapeType {
 }
 
 
-export interface FbCreateResponse {
-  name: string
-}
+

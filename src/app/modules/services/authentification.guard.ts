@@ -1,5 +1,5 @@
 import { AuthentificationService } from './authentification.service';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
+import { CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
 import { Injectable } from '@angular/core';
 
@@ -12,13 +12,12 @@ export class AuthentificationGuard implements CanActivate {
     ) {}
 
   public canActivate (): Observable<boolean> | Promise<boolean> | boolean {
-    console.log(this.auth.isAuthenticated());
+    console.log('Auth res:', this.auth.isAuthenticated());
 
     if (this.auth.isAuthenticated()) {
       return true
     } else {
-      // this.auth.logout()
-      this.router.navigate(['/login'], {
+      this.router.navigate(['./login'], {
         queryParams: {
           loginAgain: true
         }
