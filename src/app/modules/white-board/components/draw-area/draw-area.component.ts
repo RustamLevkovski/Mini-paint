@@ -7,9 +7,9 @@ import {
   ElementRef,
   Input, ViewChild,
   OnDestroy, OnInit,
-  Renderer2 } from "@angular/core";
-import { fromEvent, Observable, Subject } from "rxjs";
-import { WhiteBoardService } from "src/app/modules/services/white-board.services"; // Надо наполнить и заполнить WhiteBoardService
+  Renderer2 } from '@angular/core';
+import { fromEvent, Observable, Subject } from 'rxjs';
+import { WhiteBoardService } from 'src/app/modules/services/white-board.services';
 
 @Component({
   selector: 'app-draw-area',
@@ -22,21 +22,17 @@ export class DrawAreaComponent implements OnInit, OnDestroy {
 @Input() public colorValue: string;
 @Input() public shapes: BoardShape[];
 
-// @Output() public clearCanvas = new EventEmitter();
-
-
 @ViewChild('mainCanvas', {static: true}) public mainCanvasRef: ElementRef;
 @ViewChild('whiteBoard', {static: true}) public boardRef: ElementRef;
 
 public shape: BoardShape;
-
+public isRectangle = true;
 private mainCanvas: HTMLCanvasElement;
-private currentShapeData: Coordinates[] = []; // У меня этого нет. Импортируется из этого интерфейса
-private mouseCoords$: Observable<Point[]> // у меня нет типа Point
-private mouseUp$:  Observable<Event>;
+private currentShapeData: Coordinates[] = [];
+private mouseCoords$: Observable<Point[]>;
+private mouseUp$: Observable<Event>;
 private mouseOut$: Observable<Event>;
 private destroy$ = new Subject();
-
 
 constructor(private renderer: Renderer2, private whiteBoardService: WhiteBoardService, private fireAuth: AngularFireAuth) {}
 
@@ -51,6 +47,9 @@ public ngOnInit(): void {
   this.initMainCanvas();
   this.initStream();
   this.observeStream();
+  if (this.isRectangle) {
+    this.rectangle();
+  }
 }
 
 
@@ -61,7 +60,6 @@ private initMainCanvas(): void {
   const rect: Dimension = { width, height };
   this.setCanvasSize(rect, this.mainCanvas);
   mainContext.scale(1, 1);
-  // this.clearCanvas.next(this.mainCanvas);
   }
 
 private initStream(): void {
@@ -73,9 +71,9 @@ private initStream(): void {
   this.mouseUp$ = fromEvent(this.mainCanvas, 'mouseup');
 
   this.mouseCoords$ = mouseDown$.pipe(
-    switchMap(()=> {
+    switchMap(() => {
       return mouseMove$.pipe(
-        map((event: MouseEvent)=>({x: event.offsetX, y: event.offsetY})),
+        map((event: MouseEvent) => ({x: event.offsetX, y: event.offsetY})),
         pairwise(),
         takeUntil(this.mouseUp$),
         takeUntil(this.mouseOut$)
@@ -101,7 +99,7 @@ private observeStream(): void {
   });
 
   this.mouseOut$
-  .pipe(filter(()=> this.currentShapeData.length > 0))
+  .pipe(filter(() => this.currentShapeData.length > 0))
   .subscribe(() => this.addShape());
 }
 
@@ -112,7 +110,7 @@ private addShape(): void {
     actual: true,
     type: BoardShapeType.CURVE,
     data: this.currentShapeData
-  };  console.log(shape);
+  };
     this.currentShapeData = [];
     this.shape = shape;
   }
@@ -139,15 +137,24 @@ private setCanvasSize(size: Dimension, canvas: HTMLCanvasElement): void {
   this.renderer.setProperty(canvas, 'height', size.height);
 }
 
+private rectangle(
+   ): void {
+  const canvas = this.mainCanvas;
+  const contex = canvas.getContext('2d');
+  contex.strokeStyle = '#214415';
+  contex.lineCap = 'round';
+  contex.lineWidth = 3;
+  contex.beginPath();
+  contex.strokeRect(50, 40, 100, 100);
+}
+
 private clearMainCanvas(): void {
   const mainContex = this.mainCanvas.getContext('2d');
   mainContex.clearRect(0, 0, this.mainCanvas.width, this.mainCanvas.height);
 }
 
-private getBase64() : string {
+private getBase64(): string {
   const base64 = this.mainCanvas.toDataURL();
-  console.log(base64);
-
   return base64;
 }
 

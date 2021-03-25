@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component ({
   selector: 'app-color-picker',
@@ -11,7 +11,7 @@ export class ColorPickerComponent {
 
   @Output() public changeColor = new EventEmitter();
 
-  public currentColor: string = "#000000";
+  public currentColor = '#000000';
 
   public getColor(change): void {
     // console.log(change.target.value);

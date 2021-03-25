@@ -1,6 +1,6 @@
 import { AuthentificationGuard } from './modules/services/authentification.guard';
-import { NgModule } from "@angular/core";
-import { RouterModule} from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -8,7 +8,7 @@ import { RouterModule} from "@angular/router";
       {
         path: '',
         redirectTo: 'login',
-        pathMatch:'full'
+        pathMatch: 'full'
       },
       {
         path: 'login',
@@ -20,12 +20,12 @@ import { RouterModule} from "@angular/router";
       },
       {
         path: 'white-board',
-        loadChildren: () => import('./modules/white-board/white-board.module').then(m=>m.WhiteBoardModule),
+        loadChildren: () => import('./modules/white-board/white-board.module').then(m => m.WhiteBoardModule),
         canActivate: [AuthentificationGuard]
       },
       {
         path: 'gallery',
-        loadChildren: () => import('./modules/gallery/gallery.module').then(m=>m.GalleryModule),
+        loadChildren: () => import('./modules/gallery/gallery.module').then(m => m.GalleryModule),
         canActivate: [AuthentificationGuard]
       }
     ])
@@ -35,4 +35,4 @@ import { RouterModule} from "@angular/router";
   ]
 })
 
-export class AppRoutingModule {};
+export class AppRoutingModule {}

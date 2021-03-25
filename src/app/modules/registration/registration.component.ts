@@ -10,7 +10,7 @@ import { FormGroup } from '@angular/forms';
 import {
   Component,
   OnInit
-} from "@angular/core";
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,13 +23,12 @@ export class RegistrationComponent implements OnInit {
 
   public regForm: FormGroup;
 
-  constructor (
+  constructor(
     private fb: FormBuilder,
     private reg: AuthentificationService,
     private router: Router,
-    // private fAuth: AngularFireAuth
     ) {
-    this._createForm ()
+    this._createForm();
   }
 
   public ngOnInit(): void {
@@ -38,18 +37,15 @@ export class RegistrationComponent implements OnInit {
 
   public submit(): void {
 
-    if(this.regForm.valid) {
+    if (this.regForm.valid) {
       if (this.regForm.invalid) {
-        // console.log('Form Group', this.regForm);
-        // const formData = this.regForm.value;
-        // console.log('Form Data', formData);
-        return
+        return;
       }
       const user: User = {
         email: this.regForm.value.email,
         password: this.regForm.value.password,
         returnSecureToken: true
-      }
+      };
       this.reg.signUp(user);
       this.router.navigate(['/login']);
     }
@@ -59,6 +55,6 @@ export class RegistrationComponent implements OnInit {
   this.regForm = this.fb.group({
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.minLength(6), Validators.required])
-  })
+  });
   }
 }

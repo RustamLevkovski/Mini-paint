@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Output } from '@angular/core';
 
 
 
@@ -15,15 +15,14 @@ export class PanelComponent {
   @Output() public getBrushSizePanel = new EventEmitter();
   @Output() public getColorValuePanel = new EventEmitter();
 
-  public isShow: boolean = true;
+  public isShow = true;
 
 public getBrushSize(brushSize: number): void {
   console.log(brushSize);
   this.getBrushSizePanel.next(brushSize);
   }
 
-  public getColorValue(colorValue: string) {
-    console.log(colorValue);
+  public getColorValue(colorValue: string): void {
     this.getColorValuePanel.next(colorValue);
   }
 

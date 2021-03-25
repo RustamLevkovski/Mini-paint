@@ -21,16 +21,13 @@ export class GalleryService {
         .map(key => ({
           ...response[key],
           id: key
-        }))
+        }));
       }),
       map(data => data.filter(res => res.authorID === uid))
-    )
+    );
   }
 
-  //В методе remove используется id изображения который не присваевается на этапе его создания
-
-  public remove (id: string): Observable<void> {
-    return this.http.delete<void>(`${environment.fbDbUrl}/savedImg/${id}.json`)
+  public remove(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.fbDbUrl}/savedImg/${id}.json`);
   }
-
 }

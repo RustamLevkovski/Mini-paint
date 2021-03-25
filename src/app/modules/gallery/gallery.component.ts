@@ -1,7 +1,7 @@
 import { SavedImg } from './../../interfaces/savedImg.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { GalleryService } from './../services/gallery.service';
-import { Component, DoCheck, OnInit } from "@angular/core";
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 
 
@@ -14,7 +14,7 @@ import { take } from 'rxjs/operators';
 export class GalleryComponent implements OnInit, DoCheck {
 
   public allImages: SavedImg[] = [];
-  public currentIndex: number = 0;
+  public currentIndex = 0;
   public array: SavedImg[] = [];
   public isShow: boolean;
 
@@ -24,7 +24,7 @@ export class GalleryComponent implements OnInit, DoCheck {
 
 
     this.fireAuth.user.subscribe(res => {
-      if(res) {
+      if (res) {
         this.galleryService.getPublishedImages(res.uid)
         .pipe(
           take(1),
@@ -32,36 +32,34 @@ export class GalleryComponent implements OnInit, DoCheck {
         .subscribe(images => {
             this.allImages = images;
             this.condition();
-         })
+         });
       }
-    })
+    });
   }
 
   public ngDoCheck(): void {
-    this.condition()
+    this.condition();
   }
 
-
-
-  public removeImage (id: string): void {
+  public removeImage(id: string): void {
     id = this.allImages[this.currentIndex].id;
-    this.galleryService.remove(id).pipe(take(1)).subscribe(()=>{
-      this.allImages = this.allImages.filter(post => post.id !== id)
-    })
+    this.galleryService.remove(id).pipe(take(1)).subscribe(() => {
+      this.allImages = this.allImages.filter(post => post.id !== id);
+    });
     this.nextImg();
-  };
+  }
 
   public nextImg(): void {
-    if(this.currentIndex === this.allImages.length-1) {
-      this.currentIndex=0;
+    if (this.currentIndex === this.allImages.length - 1) {
+      this.currentIndex = 0;
     } else {
       this.currentIndex++;
     }
   }
 
   public prevImg(): void {
-    if(this.currentIndex === 0) {
-      this.currentIndex = this.allImages.length-1;
+    if (this.currentIndex === 0) {
+      this.currentIndex = this.allImages.length - 1;
     } else {
       this.currentIndex--;
     }
@@ -70,7 +68,7 @@ export class GalleryComponent implements OnInit, DoCheck {
   public condition(): void {
          if (this.allImages.length === this.array.length) {
        this.isShow = true;
-       this.allImages = this.array
+       this.allImages = this.array;
      }
      else {
        this.isShow = false;

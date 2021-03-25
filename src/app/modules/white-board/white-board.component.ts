@@ -1,7 +1,6 @@
 import { WhiteBoardService } from './../services/white-board.services';
-import { Router } from '@angular/router';
 import { AuthentificationService } from './../services/authentification.service';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { BoardShape} from 'src/app/interfaces/coordinate.interface';
 
 
@@ -14,15 +13,14 @@ import { BoardShape} from 'src/app/interfaces/coordinate.interface';
 
 export class WhiteBoardComponent implements OnInit {
 
-  public brushSizeBoard: number = 3;
-  public colorValueBoard: string = "#000000";
+  public brushSizeBoard = 3;
+  public colorValueBoard = '#000000';
   public mainCanvasBoard: HTMLCanvasElement;
   public shapes: BoardShape[] = [];
-  public base64: Array<any> = []
+  public base64: Array<string> = [];
 
   constructor(
     private authentificationService: AuthentificationService,
-    private router: Router,
     private whiteBoardService: WhiteBoardService)
     {}
 
@@ -32,19 +30,16 @@ export class WhiteBoardComponent implements OnInit {
 
   public getBrushSize(brushSize: number): number {
     this.brushSizeBoard = brushSize;
-    // console.log(brushSize);
     return this.brushSizeBoard;
   }
 
   public getColorValue(colorValue: string): string {
     this.colorValueBoard = colorValue;
-    // console.log(this.colorValueBoard);
     return this.colorValueBoard;
   }
 
   public logOut(): void {
     this.authentificationService.logout();
-    this.router.navigate['login'];
   }
 
   public publish(): void {
@@ -53,7 +48,7 @@ export class WhiteBoardComponent implements OnInit {
   }
 
   public getCanvas(clearCanvas: HTMLCanvasElement): HTMLCanvasElement {
-   this.mainCanvasBoard=clearCanvas;
+   this.mainCanvasBoard = clearCanvas;
    return this.mainCanvasBoard;
   }
 
@@ -65,9 +60,6 @@ export class WhiteBoardComponent implements OnInit {
     this.shapes = [...this.shapes, publishedShape];
     console.log('Get shape', this.shapes);
   }
-
-
-
- }
+}
 
 
