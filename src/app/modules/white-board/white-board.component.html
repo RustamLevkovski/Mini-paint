@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="block">
+    <div class="panel">
+      <app-panel
+        (getBrushSizePanel)="getBrushSize($event)"
+        (getColorValuePanel)="getColorValue($event)"
+        (getTemplateSizePanel)="getTemplateSize($event)"
+        (shapeChange)="getShape($event)"
+      >
+      </app-panel>
+    </div>
+    <div class="board">
+      <h2 class="title">White-board</h2>
+      <app-draw-area
+        [brushSize]="brushSizeBoard"
+        [colorValue]="colorValueBoard"
+        [shapes]="shapes"
+        [templateSize]="templateSizeBoard"
+        [template]="templateBoard"
+      >
+      </app-draw-area>
+
+      <div *ngIf="isShow" class="modal">
+        <div class="modalContainerBtn">
+          <button
+            (click)="closeModal($event)"
+            class="modalContainerBtn__btn btn"
+          >
+            X
+          </button>
+        </div>
+
+        <div class="modalContainerMessage">
+          <p class="modalContainerMessage__message">Publushed success!</p>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn controls__btn" routerLink="/gallery">Gallery</button>
+        <button
+          class="btn controls__btn"
+          (click)="logOut()"
+          routerLink="/login"
+        >
+          LogOut
+        </button>
+        <button class="btn controls__btn" (click)="publish()">Publish!</button>
+        <button class="btn controls__btn" (click)="clear()">Clear</button>
+      </div>
+    </div>
+  </div>
+</div>
