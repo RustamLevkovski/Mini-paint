@@ -1,16 +1,9 @@
-// import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthentificationService } from './../services/authentification.service';
 import { User } from './../../interfaces/user.interface';
-import {
-  FormControl,
-  Validators
-} from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['registration.component.scss']
 })
 
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
 
   public regForm: FormGroup;
 
@@ -30,13 +23,7 @@ export class RegistrationComponent implements OnInit {
     ) {
     this._createForm();
   }
-
-  public ngOnInit(): void {
-
-  }
-
   public submit(): void {
-
     if (this.regForm.valid) {
       if (this.regForm.invalid) {
         return;

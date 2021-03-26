@@ -6,16 +6,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./color-picker.component.scss']
 })
 
-
 export class ColorPickerComponent {
 
-  @Output() public changeColor = new EventEmitter();
+  @Output() public changeColor = new EventEmitter<string>();
 
   public currentColor = '#000000';
 
-  public getColor(change): void {
-    // console.log(change.target.value);
-    this.currentColor = change.target.value;
+  public getColor(event: Event): void {
+    this.currentColor = (event.target as HTMLInputElement).value;
     this.changeColor.next(this.currentColor);
   }
 }

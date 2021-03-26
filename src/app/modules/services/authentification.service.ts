@@ -41,22 +41,9 @@ export class AuthentificationService {
     }
   }
 
-
   public getUserId(): void {
     this.afAuth.currentUser
     .then(res => localStorage.setItem('userID', res.uid))
     .catch(res => res === null);
   }
-
-  // public setUserID(userID: any): void {
-  //   this.afAuth.currentUser
-  //   .then(res => console.log(res));
-  //   ;
-  //   if (userID) {
-  //     localStorage.setItem('userID', userID)
-  //   } else {
-  //     localStorage.clear()
-  //   }
-  // }
-
  }

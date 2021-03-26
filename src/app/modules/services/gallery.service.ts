@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { map, filter } from 'rxjs/operators';
 
-
 @ Injectable()
 
 export class GalleryService {

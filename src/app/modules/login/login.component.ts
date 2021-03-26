@@ -1,10 +1,8 @@
 import { User } from './../../interfaces/user.interface';
 import { AuthentificationService } from '../services/authentification.service';
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { AngularFireAuth } from '@angular/fire/auth';
-
 
 @Component ({
   selector: 'app-login',
@@ -12,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   public authForm: FormGroup;
 
@@ -20,15 +18,9 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthentificationService,
     private router: Router,
-    // private fAuth: AngularFireAuth
     ) {
     this._createForm();
   }
-
-  public ngOnInit(): void {
-
-  }
-
   public submit(): void {
     if (!this.authForm.invalid) {
       const user: User = {

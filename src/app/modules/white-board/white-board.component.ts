@@ -1,9 +1,8 @@
+import { ShapeType } from './../../enums/shape-type.enum';
 import { WhiteBoardService } from './../services/white-board.services';
 import { AuthentificationService } from './../services/authentification.service';
 import { Component, OnInit } from '@angular/core';
 import { BoardShape} from 'src/app/interfaces/coordinate.interface';
-
-
 
 @Component ({
   selector: 'app-white-board',
@@ -13,11 +12,14 @@ import { BoardShape} from 'src/app/interfaces/coordinate.interface';
 
 export class WhiteBoardComponent implements OnInit {
 
-  public brushSizeBoard = 3;
+  public brushSizeBoard = '3';
   public colorValueBoard = '#000000';
+  public templateSizeBoard = '50';
   public mainCanvasBoard: HTMLCanvasElement;
   public shapes: BoardShape[] = [];
   public base64: Array<string> = [];
+  public isShow = false;
+  public templateBoard = ShapeType.LINE;
 
   constructor(
     private authentificationService: AuthentificationService,
@@ -28,7 +30,12 @@ export class WhiteBoardComponent implements OnInit {
     this.authentificationService.getUserId();
   }
 
-  public getBrushSize(brushSize: number): number {
+  public getShape(shape: ShapeType): ShapeType {
+    this.templateBoard = shape;
+    return this.templateBoard;
+  }
+
+  public getBrushSize(brushSize: string): string {
     this.brushSizeBoard = brushSize;
     return this.brushSizeBoard;
   }
@@ -38,6 +45,11 @@ export class WhiteBoardComponent implements OnInit {
     return this.colorValueBoard;
   }
 
+  public getTemplateSize(templateSize: string): string{
+    this.templateSizeBoard = templateSize;
+    return this.templateSizeBoard;
+  }
+
   public logOut(): void {
     this.authentificationService.logout();
   }
@@ -45,6 +57,7 @@ export class WhiteBoardComponent implements OnInit {
   public publish(): void {
     this.whiteBoardService.publishImg();
     this.whiteBoardService.clearCanvas();
+    this.showModal();
   }
 
   public getCanvas(clearCanvas: HTMLCanvasElement): HTMLCanvasElement {
@@ -56,9 +69,12 @@ export class WhiteBoardComponent implements OnInit {
     this.whiteBoardService.clearCanvas();
   }
 
-  public getShape(publishedShape: BoardShape): void {
-    this.shapes = [...this.shapes, publishedShape];
-    console.log('Get shape', this.shapes);
+  public showModal(): void {
+    this.isShow = true;
+  }
+
+  public closeModal(): void {
+    this.isShow = false;
   }
 }
 

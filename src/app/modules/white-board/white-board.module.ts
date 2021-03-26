@@ -19,9 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
     ColorPickerComponent,
     BrushSizeComponent,
     TemplatesComponent
-
-
-
   ],
   imports: [
     CommonModule,
@@ -29,8 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forChild([
       {
         path: '', component: WhiteBoardComponent, children: [
-          // {path: '', redirectTo: 'login'},
-          // {path: 'login', component: LoginComponent, canActivate: [AuthentificationGuard]}
         ]
       }
     ])

@@ -4,7 +4,6 @@ import { GalleryService } from './../services/gallery.service';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-
 @Component ({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -21,8 +20,6 @@ export class GalleryComponent implements OnInit, DoCheck {
   constructor(private galleryService: GalleryService, private fireAuth: AngularFireAuth) {}
 
   public ngOnInit(): void {
-
-
     this.fireAuth.user.subscribe(res => {
       if (res) {
         this.galleryService.getPublishedImages(res.uid)
@@ -73,9 +70,5 @@ export class GalleryComponent implements OnInit, DoCheck {
      else {
        this.isShow = false;
      }
-
-
   }
-
-
 }

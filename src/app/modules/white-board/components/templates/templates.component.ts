@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { ShapeType } from 'src/app/enums/shape-type.enum';
 
 @Component({
   selector: 'app-templtes',
@@ -6,22 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./templates.component.scss']
 })
 
-export class TemplatesComponent {
+export class TemplatesComponent  {
 
-  public isCircle = false;
-  public isRectangle = false;
-  public isRoundedRectangle = false;
+  public currentSize = '50';
+  @Output() public shapeChange = new EventEmitter<ShapeType>();
+  @Output() public changeSize = new EventEmitter<string>();
 
   public circle(): void {
-    this.isCircle = true;
+    this.shapeChange.next(ShapeType.CIRCLE);
   }
-
   public rectangle(): void {
-    this.isRectangle = true;
+    this.shapeChange.next(ShapeType.RECT);
   }
 
-  public roundedRectangle(): void {
-    this.isRoundedRectangle = true;
+  public line(): void {
+    this.shapeChange.next(ShapeType.LINE);
   }
 
+  public getSize(event: Event): void {
+    this.currentSize = (event.target as HTMLInputElement).value;
+    this.changeSize.next(this.currentSize);
+  }
 }

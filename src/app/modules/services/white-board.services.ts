@@ -3,8 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { map, take} from 'rxjs/operators';
-
+import { take} from 'rxjs/operators';
 
 @Injectable()
 
@@ -21,9 +20,6 @@ export class WhiteBoardService {
     this.clearCanvasEvent.next();
   }
 
-  // здесь надо присвоить id изображения для последующего удаления. Как то присваивает. я хуй знаю как.
-    // прикрепляется один и тот жа authorID даже после logOut
-
   public publishImg(): void {
     this.authorID = localStorage.getItem('userID');
     this.base64Complete
@@ -33,12 +29,8 @@ export class WhiteBoardService {
         authorID: this.authorID,
         id: ''
       };
-
-      // console.log(savedImage);
-
       this.sendData(savedImage);
-      // console.log(savedImage);
-    });
+     });
     this.publishEvent.next();
   }
 
@@ -46,7 +38,4 @@ export class WhiteBoardService {
      this.http.post(`${environment.fbDbUrl}/savedImg.json`, savedImg)
     .pipe(take(1)).subscribe();
   }
-
-
-
 }

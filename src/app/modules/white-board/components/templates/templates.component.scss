@@ -4,9 +4,7 @@
 
   .templatesItem {
     color: #1a518bc9;
-    cursor: pointer;
     margin-bottom: 10px;
-
 
     svg {
       height: 25px;
@@ -15,12 +13,12 @@
   }
 }
 
-
 button {
   border: none;
   outline: none;
   cursor: pointer;
   color: #1a518bc9;
+  background-color: #fff3e6;
 }
 
 button:hover {

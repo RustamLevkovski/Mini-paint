@@ -1,3 +1,4 @@
+
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -8,12 +9,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 export class BrushSizeComponent {
 
-  @Output() public changeBrushSize = new EventEmitter();
+  @Output() public changeBrushSize = new EventEmitter<string>();
 
-  public currentSize = 3;
+  public currentSize = '3';
 
-  public getSize(change): void {
-    this.currentSize = change.target.value;
+  public getSize(event: Event): void {
+    this.currentSize = (event.target as HTMLInputElement).value;
     this.changeBrushSize.next(this.currentSize);
   }
 }
