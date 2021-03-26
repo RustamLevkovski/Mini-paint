@@ -1,0 +1,43 @@
+.block {
+  width: 50vh;
+  align-items: initial;
+
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .tools {
+    list-style: none;
+
+    .listTools {
+      height: 30px;
+      margin-top: 10px;
+
+      &__brush {
+        color: #1a518bc9;
+        cursor: pointer;
+      }
+
+      &__brush:hover {
+        color: #1a508b;
+      }
+
+      &__templates {
+        color: #1a518bc9;
+        cursor: pointer;
+      }
+
+      &__templates:hover {
+        color: #1a508b;
+      }
+    }
+
+    button {
+      outline: none;
+      border: none;
+      background-color: #fff3e6;
+
+    }
+  }
+}

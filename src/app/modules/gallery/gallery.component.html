@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="block">
+    <h1 class="title">Gallery</h1>
+
+    <div *ngIf="!isShow" class="page">
+      <img [src]="allImages[currentIndex]?.base64" alt="image" />
+    </div>
+
+    <p *ngIf="isShow" class="message">You have not published any images yet</p>
+
+    <div class="controlPanel">
+      <button title="Previousl image" (click)="prevImg()" class="btn">
+        &#10096;
+      </button>
+      <button title="Delete image" (click)="removeImage($event)" class="btn">
+        &#x292C;
+      </button>
+      <button title="Next image" (click)="nextImg()" class="btn">
+        &#10095;
+      </button>
+    </div>
+    <button title="Back to White-Board" class="btn" routerLink="/white-board">
+      Back
+    </button>
+  </div>
+</div>
