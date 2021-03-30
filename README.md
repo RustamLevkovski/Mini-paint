@@ -7,7 +7,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 #Demo 
-<p>MiniPaint Demo <a href="https://rustamlevkovski.github.io/Innowise-lab-internship-Level-2-Mini-paint/" title="Demo">
-</a> </p>
-
-<p><a href="https://rustamlevkovski.github.io/Innowise-lab-internship-Level-2-Mini-paint/">This link</a> MiniPaint Demo</p>
+<p><a href="https://rustamlevkovski.github.io/Innowise-lab-internship-Level-2-Mini-paint/">MiniPaint Demo</a> </p>
