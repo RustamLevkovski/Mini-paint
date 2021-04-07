@@ -31,8 +31,8 @@ export class LoginComponent {
         password: this.authForm.value.password,
         returnSecureToken: true,
       };
-      this.auth.login(user).then((result) => {
-        this.auth.setToken(result.user.b.b.h);
+      this.auth.login(user).subscribe((result) => {
+        this.auth.setToken(result.user.refreshToken);
         this.authForm.reset();
         this.router.navigate(['/white-board']);
       });

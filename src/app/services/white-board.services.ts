@@ -23,8 +23,7 @@ export class WhiteBoardService {
     this.base64Complete.pipe(take(1)).subscribe((base64) => {
       const savedImage: SavedImg = {
         base64,
-        authorID: this.authorID,
-        id: '',
+        authorID: this.authorID
       };
       this.sendData(savedImage);
     });

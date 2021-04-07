@@ -1,10 +1,11 @@
 
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-brush-size',
   templateUrl: './brush-size.component.html',
-  styleUrls: ['./brush-size.component.scss']
+  styleUrls: ['./brush-size.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class BrushSizeComponent {

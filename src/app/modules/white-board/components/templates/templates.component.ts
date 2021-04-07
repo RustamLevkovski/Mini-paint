@@ -1,10 +1,11 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ShapeType } from 'src/app/enums/shape-type.enum';
 
 @Component({
   selector: 'app-templtes',
   templateUrl: './templates.component.html',
-  styleUrls: ['./templates.component.scss']
+  styleUrls: ['./templates.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class TemplatesComponent  {

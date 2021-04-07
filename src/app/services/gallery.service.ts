@@ -12,7 +12,7 @@ export class GalleryService {
   public getPublishedImages(uid): Observable<SavedImg[]> {
     return this.http.get(`${environment.fbDbUrl}/savedImg.json`).pipe(
       filter((response) => !!response),
-      map((response: { [key: string]: any }) => {
+      map((response: { [key: string]: SavedImg }) => {
         return Object.keys(response).map((key) => ({
           ...response[key],
           id: key,

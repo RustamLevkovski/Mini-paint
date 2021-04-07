@@ -1,6 +1,8 @@
+import { from, Observable } from 'rxjs';
 import { User } from '../interfaces/user.interface';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 
 @Injectable()
 export class AuthentificationService {
@@ -10,8 +12,10 @@ export class AuthentificationService {
     return localStorage.getItem('fb-token');
   }
 
-  public login(user: User): Promise<any> {
-    return this.afAuth.signInWithEmailAndPassword(user.email, user.password);
+  public login(user: User): Observable<firebase.auth.UserCredential> {
+    return from(
+      this.afAuth.signInWithEmailAndPassword(user.email, user.password)
+    );
   }
 
   public logout(): void {

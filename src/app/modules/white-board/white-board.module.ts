@@ -30,6 +30,6 @@ import { HttpClientModule } from '@angular/common/http';
       },
     ]),
   ],
-  providers: [WhiteBoardService],
+  providers: [WhiteBoardService]
 })
 export class WhiteBoardModule {}
