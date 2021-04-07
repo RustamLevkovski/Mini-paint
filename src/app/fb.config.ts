@@ -5,5 +5,6 @@ export const FB_CONFIG = {
   storageBucket: 'minipaint-92734.appspot.com',
   messagingSenderId: '269639349660',
   appId: '1:269639349660:web:e01c8632d8fbca27e10459',
-  fbDbUrl: 'https://minipaint-92734-default-rtdb.europe-west1.firebasedatabase.app'
+  fbDbUrl:
+    'https://minipaint-92734-default-rtdb.europe-west1.firebasedatabase.app',
 };

@@ -1,9 +1,8 @@
-import { User } from '../../interfaces/user.interface';
+import { User } from '../interfaces/user.interface';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable()
-
 export class AuthentificationService {
   constructor(private afAuth: AngularFireAuth) {}
 
@@ -27,10 +26,13 @@ export class AuthentificationService {
   }
 
   public signUp(user: User): void {
-    this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
-    .then((userCredential) => {
-      this.afAuth.currentUser.then(result => result.sendEmailVerification());
-     });
+    this.afAuth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then((userCredential) => {
+        this.afAuth.currentUser.then((result) =>
+          result.sendEmailVerification()
+        );
+      });
   }
 
   public setToken(token: string): void {
@@ -43,7 +45,7 @@ export class AuthentificationService {
 
   public getUserId(): void {
     this.afAuth.currentUser
-    .then(res => localStorage.setItem('userID', res.uid))
-    .catch(res => res === null);
+      .then((res) => localStorage.setItem('userID', res.uid))
+      .catch((res) => res === null);
   }
- }
+}

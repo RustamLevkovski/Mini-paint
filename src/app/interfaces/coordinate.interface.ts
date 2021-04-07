@@ -20,6 +20,3 @@ export enum BoardShapeType {
   CURVE = 'curve',
   POINT = 'point',
 }
-
-
-

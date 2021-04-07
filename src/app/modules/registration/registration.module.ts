@@ -5,13 +5,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from '@angular/fire';
-import { AuthentificationService } from '../services/authentification.service';
-
+import { AuthentificationService } from '../../services/authentification.service';
 
 @NgModule({
-  declarations: [
-    RegistrationComponent
-  ],
+  declarations: [RegistrationComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -20,13 +17,10 @@ import { AuthentificationService } from '../services/authentification.service';
     RouterModule.forChild([
       {
         path: '',
-        component: RegistrationComponent
-      }
-    ])
+        component: RegistrationComponent,
+      },
+    ]),
   ],
-  providers: [
-    AuthentificationService
-  ]
+  providers: [AuthentificationService],
 })
-
 export class RegistrationModule {}

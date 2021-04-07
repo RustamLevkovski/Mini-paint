@@ -7,7 +7,7 @@
     flex-direction: row;
     justify-content: space-between;
 
-    .panel{
+    .panel {
       flex-basis: 30%;
       margin: 0 10px;
     }
@@ -22,7 +22,7 @@
       justify-content: space-between;
 
       &__title {
-        color: #0D335D;
+        color: #0d335d;
       }
 
       .modal {
@@ -42,11 +42,10 @@
         }
 
         .modalContainerMessage {
-
           &__message {
             font-weight: bold;
             font-size: 20px;
-            color: #1a508b;;
+            color: #1a508b;
             font-size: 20px;
           }
         }

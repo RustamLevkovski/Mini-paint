@@ -1,17 +1,15 @@
 import { ShapeType } from './../../enums/shape-type.enum';
-import { WhiteBoardService } from './../services/white-board.services';
-import { AuthentificationService } from './../services/authentification.service';
+import { WhiteBoardService } from '../../services/white-board.services';
+import { AuthentificationService } from '../../services/authentification.service';
 import { Component, OnInit } from '@angular/core';
-import { BoardShape} from 'src/app/interfaces/coordinate.interface';
+import { BoardShape } from 'src/app/interfaces/coordinate.interface';
 
-@Component ({
+@Component({
   selector: 'app-white-board',
   templateUrl: './white-board.component.html',
-  styleUrls: ['white-board.component.scss']
+  styleUrls: ['white-board.component.scss'],
 })
-
 export class WhiteBoardComponent implements OnInit {
-
   public brushSizeBoard = '3';
   public colorValueBoard = '#000000';
   public templateSizeBoard = '50';
@@ -23,8 +21,8 @@ export class WhiteBoardComponent implements OnInit {
 
   constructor(
     private authentificationService: AuthentificationService,
-    private whiteBoardService: WhiteBoardService)
-    {}
+    private whiteBoardService: WhiteBoardService
+  ) {}
 
   public ngOnInit(): void {
     this.authentificationService.getUserId();
@@ -45,7 +43,7 @@ export class WhiteBoardComponent implements OnInit {
     return this.colorValueBoard;
   }
 
-  public getTemplateSize(templateSize: string): string{
+  public getTemplateSize(templateSize: string): string {
     this.templateSizeBoard = templateSize;
     return this.templateSizeBoard;
   }
@@ -61,11 +59,11 @@ export class WhiteBoardComponent implements OnInit {
   }
 
   public getCanvas(clearCanvas: HTMLCanvasElement): HTMLCanvasElement {
-   this.mainCanvasBoard = clearCanvas;
-   return this.mainCanvasBoard;
+    this.mainCanvasBoard = clearCanvas;
+    return this.mainCanvasBoard;
   }
 
-  public clear(): void{
+  public clear(): void {
     this.whiteBoardService.clearCanvas();
   }
 
@@ -77,5 +75,3 @@ export class WhiteBoardComponent implements OnInit {
     this.isShow = false;
   }
 }
-
-
