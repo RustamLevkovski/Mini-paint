@@ -40,16 +40,16 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Database structure: 
   + Authentication snapshot:
-  + User  
-      + Email: 'string'
-      + Password: 'string'
-      + User UID: 'string'
+      + User  
+        + Email: 'string'
+        + Password: 'string'
+        + User UID: 'string'
    
   + Realtime database snapshot: 
-  + Post Id: 'string'
-      + authorId: 'string'
-      + base64: 'string', 
-      + id: 'string'
+      + Post Id: 'string'
+        + authorId: 'string'
+        + base64: 'string', 
+        + id: 'string'
       
 
 ## Application Stack
