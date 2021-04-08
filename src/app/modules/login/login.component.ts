@@ -1,3 +1,4 @@
+import { take } from 'rxjs/operators';
 import { User } from './../../interfaces/user.interface';
 import { AuthentificationService } from '../../services/authentification.service';
 import { Component } from '@angular/core';
@@ -31,11 +32,14 @@ export class LoginComponent {
         password: this.authForm.value.password,
         returnSecureToken: true,
       };
-      this.auth.login(user).subscribe((result) => {
-        this.auth.setToken(result.user.refreshToken);
-        this.authForm.reset();
-        this.router.navigate(['/white-board']);
-      });
+      this.auth
+        .login(user)
+        .pipe(take(1))
+        .subscribe((result) => {
+          this.auth.setToken(result.user.refreshToken);
+          this.authForm.reset();
+          this.router.navigate(['/white-board']);
+        });
     }
   }
 

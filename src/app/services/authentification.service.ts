@@ -1,6 +1,6 @@
 import { from, Observable } from 'rxjs';
 import { User } from '../interfaces/user.interface';
-import { Injectable } from '@angular/core';
+import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 
@@ -32,7 +32,7 @@ export class AuthentificationService {
   public signUp(user: User): void {
     this.afAuth
       .createUserWithEmailAndPassword(user.email, user.password)
-      .then((userCredential) => {
+      .then(() => {
         this.afAuth.currentUser.then((result) =>
           result.sendEmailVerification()
         );
