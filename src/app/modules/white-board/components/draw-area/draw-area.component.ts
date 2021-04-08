@@ -9,7 +9,7 @@ import {
   OnDestroy, OnInit,
   Renderer2 } from '@angular/core';
 import { fromEvent, Observable, Subject } from 'rxjs';
-import { WhiteBoardService } from 'src/app/modules/services/white-board.services';
+import { WhiteBoardService } from 'src/app/services/white-board.services';
 
 @Component({
   selector: 'app-draw-area',

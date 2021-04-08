@@ -1,4 +1,4 @@
-import { WhiteBoardService } from './../services/white-board.services';
+import { WhiteBoardService } from '../../services/white-board.services';
 import { TemplatesComponent } from './components/templates/templates.component';
 import { BrushSizeComponent } from './components/brush-size/brush-size.component';
 import { PanelComponent } from './components/panel/panel.component';
@@ -10,29 +10,26 @@ import { RouterModule } from '@angular/router';
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
-@NgModule ({
+@NgModule({
   declarations: [
     WhiteBoardComponent,
     DrawAreaComponent,
     PanelComponent,
     ColorPickerComponent,
     BrushSizeComponent,
-    TemplatesComponent
+    TemplatesComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule.forChild([
       {
-        path: '', component: WhiteBoardComponent, children: [
-        ]
-      }
-    ])
+        path: '',
+        component: WhiteBoardComponent,
+        children: [],
+      },
+    ]),
   ],
-  providers: [
-    WhiteBoardService
-  ]
+  providers: [WhiteBoardService]
 })
-
 export class WhiteBoardModule {}

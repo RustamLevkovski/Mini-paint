@@ -1,9 +1,10 @@
-import { User } from '../../interfaces/user.interface';
-import { Injectable } from '@angular/core';
+import { from, Observable } from 'rxjs';
+import { User } from '../interfaces/user.interface';
+import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 
 @Injectable()
-
 export class AuthentificationService {
   constructor(private afAuth: AngularFireAuth) {}
 
@@ -11,8 +12,10 @@ export class AuthentificationService {
     return localStorage.getItem('fb-token');
   }
 
-  public login(user: User): Promise<any> {
-    return this.afAuth.signInWithEmailAndPassword(user.email, user.password);
+  public login(user: User): Observable<firebase.auth.UserCredential> {
+    return from(
+      this.afAuth.signInWithEmailAndPassword(user.email, user.password)
+    );
   }
 
   public logout(): void {
@@ -27,10 +30,13 @@ export class AuthentificationService {
   }
 
   public signUp(user: User): void {
-    this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
-    .then((userCredential) => {
-      this.afAuth.currentUser.then(result => result.sendEmailVerification());
-     });
+    this.afAuth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then(() => {
+        this.afAuth.currentUser.then((result) =>
+          result.sendEmailVerification()
+        );
+      });
   }
 
   public setToken(token: string): void {
@@ -43,7 +49,7 @@ export class AuthentificationService {
 
   public getUserId(): void {
     this.afAuth.currentUser
-    .then(res => localStorage.setItem('userID', res.uid))
-    .catch(res => res === null);
+      .then((res) => localStorage.setItem('userID', res.uid))
+      .catch((res) => res === null);
   }
- }
+}

@@ -10,8 +10,8 @@
         class="validation"
       >
         <small *ngIf="authForm.get('email').errors.required">
-          This field is required</small
-        >
+          This field is required
+        </small>
         <small *ngIf="authForm.get('email').errors.email">
           You have entered an invalid e-mail address. Please try again.
         </small>
@@ -37,9 +37,7 @@
           Password must contain at least
           {{ authForm.get("password").errors.minlength.requiredLength }}
           characters. Please try again. You have entered
-          {{
-            authForm.get("password").errors.minlength.actualLength
-          }}
+          {{ authForm.get("password").errors.minlength.actualLength }}
           characters
         </small>
       </div>
@@ -52,4 +50,3 @@
     </button>
   </form>
 </div>
-

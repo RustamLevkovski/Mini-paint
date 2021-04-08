@@ -1,14 +1,12 @@
-import { SavedImg } from './../../interfaces/savedImg.interface';
-import { Observable, Subject } from 'rxjs';
+import { SavedImg } from '../interfaces/savedImg.interface';
+import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { take} from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Injectable()
-
 export class WhiteBoardService {
-
   public clearCanvasEvent = new Subject();
   public publishEvent = new Subject();
   public base64Complete = new Subject<string>();
@@ -22,20 +20,20 @@ export class WhiteBoardService {
 
   public publishImg(): void {
     this.authorID = localStorage.getItem('userID');
-    this.base64Complete
-    .pipe(take(1)).subscribe(base64 => {
+    this.base64Complete.pipe(take(1)).subscribe((base64) => {
       const savedImage: SavedImg = {
         base64,
-        authorID: this.authorID,
-        id: ''
+        authorID: this.authorID
       };
       this.sendData(savedImage);
-     });
+    });
     this.publishEvent.next();
   }
 
   private sendData(savedImg: SavedImg): void {
-     this.http.post(`${environment.fbDbUrl}/savedImg.json`, savedImg)
-    .pipe(take(1)).subscribe();
+    this.http
+      .post(`${environment.fbDbUrl}/savedImg.json`, savedImg)
+      .pipe(take(1))
+      .subscribe();
   }
 }

@@ -1,11 +1,9 @@
 <div class="container">
   <div class="block">
     <h1 class="title">Gallery</h1>
-
     <div *ngIf="!isShow" class="page">
       <img [src]="allImages[currentIndex]?.base64" alt="image" />
     </div>
-
     <p *ngIf="isShow" class="message">You have not published any images yet</p>
 
     <div class="controlPanel">

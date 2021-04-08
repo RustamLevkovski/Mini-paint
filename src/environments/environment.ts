@@ -1,7 +1,6 @@
 import { FB_CONFIG } from './../app/fb.config';
 import { Environment } from './enviroment.interfce';
 
-
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -9,7 +8,7 @@ import { Environment } from './enviroment.interfce';
 export const environment: Environment = {
   production: false,
   apiKey: FB_CONFIG.apiKey,
-  fbDbUrl: FB_CONFIG.fbDbUrl
+  fbDbUrl: FB_CONFIG.fbDbUrl,
 };
 
 /*

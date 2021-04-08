@@ -35,9 +35,7 @@
         </small>
         <small>
           Password must contain at least
-          {{
-            regForm.get("password").errors.minlength.requiredLength
-          }}
+          {{ regForm.get("password").errors.minlength.requiredLength }}
           characters. You have enterd
           {{ regForm.get("password").errors.minlength.actualLength }}
         </small>
